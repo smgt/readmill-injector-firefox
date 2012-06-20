@@ -37,13 +37,6 @@
       return Readmill.button(el.href);
     });
 
-    Readmill.appendChild(".buttons a[href$='.epub']", function(el) {
-      return Readmill.button(el.href, function(button) {
-        button.style.marginTop = "4px";
-        return button;
-      });
-    });
-
   // Project Gutenberg
   } else if(/^https?:\/\/.*gutenberg\.org\//.test(document.location.href)) {
     Readmill.appendChild("a[type='application/epub+zip']", function(el) {
