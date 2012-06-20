@@ -13,6 +13,11 @@ more about Readmill and sign up for the service over att their [homepage](http:/
 Currently the only supported webpage is [Project Gutenberg](http://gutenberg.org). But as more services becomes known I will
 add them.
 
+  * [Project Gutenberg](http://gutenberg.org)
+  * [Feedbooks](http://feedbooks.com)
+
+More services will be added over time.
+
 ## Chrome extension
 
 There is also a Chrome extension available ( [source](https://github.com/simon/chrome-readmill-injector) ).
