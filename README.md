@@ -1,7 +1,7 @@
 # Firefox Add-On - Readmill Injector
 
 This is the repository of the Firefox plugin that injects 'Send to Readmill' buttons on webpages that includes EPUB files.
-You can find the [Add-On over at Mozilla](https://addons.mozilla.org/en-US/firefox/addon/readmill-injector/).
+Install the Add-On [on it's homepage](http://smgt.me/readmill-injector/).
 
 ## Readmill
 
