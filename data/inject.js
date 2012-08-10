@@ -2,32 +2,74 @@
 
   var Readmill = {
 
-    button: function(url, callback, size) {
-      var el = document.createElement("div");
-      el.className = "send-to-readmill"
-      el.setAttribute('data-download-url', url);
-      if(size) {
-        el.setAttribute('data-display', size);
-      } else {
-        el.setAttribute('data-display', "small");
+    button: function(url, callback, displayClass) {
+      var params = [], src, iframe;
+
+      if(displayClass === undefined) {
+        displayClass = "small";
       }
 
       var container = document.createElement("div");
+
       if(callback) {
         container = callback(container);
       }
-      container.appendChild(el);
+
+      params.push('display=' + displayClass);
+      params.push('origin_domain=' + encodeURIComponent(document.domain));
+      params.push('download_url=' + encodeURIComponent(url));
+
+      src = 'https://widgets.readmill.com/send';
+      src += '?' + params.join('&');
+
+      iframe = document.createElement('iframe');
+      Readmill.styleIFrame(iframe, displayClass);
+      iframe.src = src;
+      container.appendChild(iframe);
       return container;
     },
 
     appendChild: function(targets, button, insertAt) {
       var targets = document.querySelectorAll(targets);
       Array.prototype.forEach.call(targets, function(el) {
-        //<div class="send-to-readmill" data-download-url="http://project.com" data-display="small" ></div>
         el.parentNode.appendChild(button(el));
       });
-    }
+    },
 
+    styleIFrame: function(iframe, displayClass) {
+      var style = 'margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; position: static; left: 0px; top: 0px;',
+          placeHolderUrl;
+      switch(displayClass) {
+        case 'small':
+          style += 'width: 72px !important; height: 26px !important; ';
+          placeHolderUrl = 'https://platform.readmill.com/assets/btn_ph_str_small.png';
+          break;
+        case 'large':
+          style += 'width: 170px !important; height: 40px !important;';
+          placeHolderUrl = 'https://platform.readmill.com/assets/btn_ph_str_large.png';
+          break;
+      }
+
+      iframe.style.cssText = "background: transparent url(" + placeHolderUrl + ") !important; " + style;
+
+      // Move into a function for better minimization
+      function _applyAttribute(attrName, value) {
+        iframe.setAttribute(attrName, value);
+      }
+
+      // NOTE Be careful about capitalization here. Internet explorer
+      // does not care about attributes unless they are camel cased
+      _applyAttribute('allowTransparency', 'true');  // Let transparency shine through
+      _applyAttribute('frameBorder', '0');           // Hide ugly iframe border
+      _applyAttribute('tabIndex', '0');              // Disable tabbing to the iframe
+      _applyAttribute('scrolling', 'no');            // Disable scrolling overflowing content
+
+      if(iframe.className) {
+        iframe.className = 'send-to-readmill ' + displayClass;
+      } else {
+        iframe.setAttribute('class', 'send-to-readmill ' + displayClass);
+      }
+    }
   }
 
   // Feedbooks
@@ -58,10 +100,5 @@
       });
     });
   }
-
-  var st = document.createElement('script'); st.type = 'text/javascript'; st.async = true;
-  st.src = 'https://platform.readmill.com/send.js';
-  var p = document.getElementsByTagName('body')[0];
-  p.appendChild(st);
 
 })();
