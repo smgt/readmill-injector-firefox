@@ -12,12 +12,12 @@ namespace :run do
 
   desc "Test plugin on gutenberg.org"
   task :gutenberg do
-    `cfx run --binary-args '-url "http://gutenberg.org/ebooks/40040" -jsconsole'`
+    `cfx run --binary-args '-url "http://gutenberg.org/ebooks/40040" -jsconsole' -p '~/Library/Application Support/Firefox/Profiles/extension-development/'`
   end
 
   desc "Test plugin on feedbooks.com"
   task :feedbooks do
-    `cfx run --binary-args '-url "http://www.feedbooks.com/books/top?range=month" -jsconsole'`
+    `cfx run --binary-args '-url "http://www.feedbooks.com/books/top?range=month"  -jsconsole' -p '~/Library/Application Support/Firefox/Profiles/extension-development/'`
   end
 
 end
