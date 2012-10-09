@@ -1,9 +1,9 @@
 {
-    "name": "readmill-inject", 
-    "license": "The MIT License (http://www.opensource.org/licenses/mit-license.php)", 
-    "author": "Simon Gate (simon@smgt.me)", 
-    "version": "0.3.0", 
-    "fullName": "Readmill Injector", 
-    "id": "jid1-DVBbVNteYD6x4w", 
+    "name": "readmill-inject",
+    "license": "The MIT License (http://www.opensource.org/licenses/mit-license.php)",
+    "author": "Simon Gate (simon@smgt.me)",
+    "version": "0.4.0",
+    "fullName": "Readmill Injector",
+    "id": "jid1-DVBbVNteYD6x4w",
     "description": "Add 'Send to Readmill' buttons to webpages to easily send EPUB books to your Readmill Library."
 }
